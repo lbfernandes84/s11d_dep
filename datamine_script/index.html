@@ -1,4 +1,4 @@
-﻿<html>
+﻿<html ng-app="s11d-dep">
 	<head>
 		<title></title>
 		<meta http-equiv="X-UA-Compatible" content="IE=11" />
@@ -22,82 +22,76 @@
 		<script type="text/javascript" src='jquery/jquery-1.11.3.min.js'></script>
 		<script type="text/javascript" src='jquery/jquery-ui.js'></script>
 		<script type="text/javascript" src='jquery/jquery.validate.min.js'></script>
-		<!-- GENERAL utils -->
-		<!--
-		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/reportHandler.js"></script>
-		<script type="text/javascript" src="js/utils.js"></script>
-		-->
-		<script type="text/javascript" src="js/functionalTools.js"></script>
+		<!-- Angularjs -->
+		<script type="text/javascript" src='angularjs/angular.min.js'></script>
+		<!-- GENERAL utils -->		
+		<script type="text/javascript" src="js/app.js"></script>
 		<script type="text/javascript" src="js/datamine.js"></script>
-		<script type="text/javascript" src="js/studioUtils.js"></script>
-		<!-- related scrpts for AA -->
-		<script type="text/javascript" src="js/main.js"></script>
-		<!-- validacao de formularios -->
-		<script type="text/javascript" src="js/validation.js"></script>
-
+		<script type="text/javascript" src="js/utils.js"></script>
+		<!-- related scrpts for S11D dependencies -->
+		<!--<script type="text/javascript" src="js/main.js"></script>-->
 		<script type="text/javascript">
 			//carregamento scripts
 			$().ready(function (){
-				// index_defineVisualization()
-				$("#main").load("html/main.html");									
-			})
-
-			function loadHelpMessages(selector,group){
-				$(selector).each(function(index){
-					if($(this).attr("id")){
-						value = msg_help_messages[group][$(this).attr("id")]
-						$(this).attr("title",value)
-					}
-				});
-				$( "[title]" ).tooltip();
-			}
-
-			function index_defineVisualization(){
-				$("#info").hide();
-				$("#user-info").css({
-					"font-wheight":"bold",
-					"font-size":"1.4em",
-					"color":"C0062B"					
-				})
-				$("#mat-info").css({
-					"font-style":"normal",
-					"color":"44546A"					
-				})
-				$("#name-info").css({
-					"font-style":"normal",
-					"color":"44546A"					
-				})
-				$("#versao").css({
-					"color":"C0062B"					
-				})
-			}
+			})						
 		</script>
 
 	</head>
 	<body onload="datamine.createStudioConnection()">
 		<div id="header" name="header">			
 			<!-- <img src="img/aa_logo.jpg" height="100" width="400"> -->
-			<img src="img/aa_logo.jpg">
+			<!-- <img src="img/aa_logo.jpg"> -->
 		</div>
-<!-- 		<div id="info" name="info">
-			<br>
-			<table id="user-info">
-				<tr>
-					<td>Matrícula:</td>
-					<td id="mat-info"></td>
-				</tr>
-				<tr>
-					<td>Usuário:</td>
-					<td id="name-info"></td>
-				</tr>
-			</table>
-			<br>
-		</div> -->
-		<div id="main">		
+		<div id="main" ng-controller="inputDataController as input_ctrl">		
+			<form action="">
+				<fieldset>
+					<legend>Arquivos de Entrada</legend>
+					<table id="sizer1">
+						<tr id="1">
+							<td id="1">
+								<label for="activities">Activities Points:</label>
+								<input id="activities" type="text" value="{{input_ctrl.activitiesFileName}}" >
+							</td>
+						</tr>
+						<tr id="2">
+							<td id="1">
+								<label for="safety-distance">Safety Distance:</label>
+								<input id="safety-distance" type="text" value="{{input_ctrl.safetyDistance}}" >
+							</td>
+						</tr>
+					</table>
+					<table id="sizer2">
+						<tr>
+							<td class="1">
+								<li id=""></li>
+							</td>
+							<td class="2">
+								<li id=""></li>
+							</td>
+						</tr>
+					</table>
+				</fieldset label="Arquivos de Saída">
+				<fieldset>
+					<legend>Arquivos de Saída</legend>
+					<table id="size-output">
+						<tr id="ro-1">
+							<td id="1">
+								<label for=""></label>
+								<input type="text">
+							</td>
+						</tr>
+						<tr id="ro-2">
+							<td id="2"><label for=""></label>
+								<input type="text">
+							</td>
+						</tr>
+					</table>					
+				</fieldset>
+			</form>
+
 		</div>
 		<div id="versao">	
-			v. 1.10 (alpha)
-		</div>
+			v. 0.0 (alpha)
+		</div>				
 	</body>
 </html>
