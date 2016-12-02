@@ -1,0 +1,103 @@
+﻿<html>
+	<head>
+		<title></title>
+		<meta http-equiv="X-UA-Compatible" content="IE=11" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+		<!-- <link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css"> -->
+	    <style>
+	        body { font-size: 62.5%;font-weight: bold; }
+	        table { font-size: 100%;font-weight: bold; }
+	        input.text { margin-bottom:12px; width:60%;}
+-  			fieldset div {
+-    			margin-bottom: .2em;
+-  			}
+-			fieldset .help {
+-				display: inline-block;
+-			}
+			.ui-tooltip {
+				width: 420px;
+			}
+    	</style>
+		<!-- JQUERY Library utils -->
+		<script type="text/javascript" src='jquery/jquery-1.11.3.min.js'></script>
+		<script type="text/javascript" src='jquery/jquery-ui.js'></script>
+		<script type="text/javascript" src='jquery/jquery.validate.min.js'></script>
+		<!-- GENERAL utils -->
+		<!--
+		<script type="text/javascript" src="js/common.js"></script>
+		<script type="text/javascript" src="js/reportHandler.js"></script>
+		<script type="text/javascript" src="js/utils.js"></script>
+		-->
+		<script type="text/javascript" src="js/functionalTools.js"></script>
+		<script type="text/javascript" src="js/datamine.js"></script>
+		<script type="text/javascript" src="js/studioUtils.js"></script>
+		<!-- related scrpts for AA -->
+		<script type="text/javascript" src="js/main.js"></script>
+		<!-- validacao de formularios -->
+		<script type="text/javascript" src="js/validation.js"></script>
+
+		<script type="text/javascript">
+			//carregamento scripts
+			$().ready(function (){
+				// index_defineVisualization()
+				$("#main").load("html/main.html");									
+			})
+
+			function loadHelpMessages(selector,group){
+				$(selector).each(function(index){
+					if($(this).attr("id")){
+						value = msg_help_messages[group][$(this).attr("id")]
+						$(this).attr("title",value)
+					}
+				});
+				$( "[title]" ).tooltip();
+			}
+
+			function index_defineVisualization(){
+				$("#info").hide();
+				$("#user-info").css({
+					"font-wheight":"bold",
+					"font-size":"1.4em",
+					"color":"C0062B"					
+				})
+				$("#mat-info").css({
+					"font-style":"normal",
+					"color":"44546A"					
+				})
+				$("#name-info").css({
+					"font-style":"normal",
+					"color":"44546A"					
+				})
+				$("#versao").css({
+					"color":"C0062B"					
+				})
+			}
+		</script>
+
+	</head>
+	<body onload="datamine.createStudioConnection()">
+		<div id="header" name="header">			
+			<!-- <img src="img/aa_logo.jpg" height="100" width="400"> -->
+			<img src="img/aa_logo.jpg">
+		</div>
+<!-- 		<div id="info" name="info">
+			<br>
+			<table id="user-info">
+				<tr>
+					<td>Matrícula:</td>
+					<td id="mat-info"></td>
+				</tr>
+				<tr>
+					<td>Usuário:</td>
+					<td id="name-info"></td>
+				</tr>
+			</table>
+			<br>
+		</div> -->
+		<div id="main">		
+		</div>
+		<div id="versao">	
+			v. 1.10 (alpha)
+		</div>
+	</body>
+</html>
