@@ -15,6 +15,7 @@ var datamine = {
   "deleteTempFiles":dm_deleteTempFiles,
   "existsFileOnProject":dm_existsFileOnProject,
   "getNumberOfRecordsFromFile":dm_getNumberOfRecordsFromFile,
+  "getListFieldsFromFile":dm_getListFieldsFromFile,
 	"print":dm_printOnCommandScreen,
   //Ignorar os seguintes metodos
   "saveConfigObject":dm_saveConfigObject,
@@ -107,6 +108,20 @@ function dm_getNumberOfRecordsFromFile(fileName){
     return numRecords;
 }
 
+function dm_getListFieldsFromFile(fileName,absent){
+  absent = absent || false
+  fields = [];
+  if(oDmApp.ActiveProject.DBObjExists(fileName)){
+    var dmHandler = dm_createDmtableHandlerObj()
+    dmHandler.Open(oDmApp.ActiveProject.GetDBObjFilePath(fileName),false);
+    var schema = dmHandler.schema;
+    var numFields = schema.FieldCount;
+    for(var i = 1; i<=numFields; i++){
+      fields.push(schema.GetFieldName(i))
+    }
+  }
+  return fields
+}
 function dm_saveConfigObject(selector,fileName){
   var configObj = {};
   $(selector).each(function(index){
