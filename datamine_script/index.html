@@ -51,7 +51,7 @@
       				connectWith: ".connectedSortable"
       				// receive:function(){alert(angulars11d-dep)}
     			}).disableSelection();
-                defineVizualization()
+                defineVizualization();
             })
 
             function defineVizualization(){
@@ -59,23 +59,24 @@
 				$(".td-label").width("25%");
 				$(".td-data").width("75%");
 				$(".td-data > input[type='text'").width("80%");
+				$("#safety-distance").width("15%");
 				
 				$(".fields1").width("50%");
 				$(".fields2").width("50%");
 				$(".select").width("90%");
-
 				$("#available").width("85%")
 				$("#sort").width("85%")
 			
 				$("legend").css("font-size",20)
-			}
+			}			
 
 		</script>
 
 	</head>
 	<body onload="datamine.createStudioConnection()">
 		<div id="header" name="header">			
-			<!-- <img src="img/aa_logo.jpg" height="100" width="400"> -->
+			<img src="img/Vale_faixa.png">
+			<img src="img/Vale_logo.gif">
 			<!-- <img src="img/aa_logo.jpg"> -->
 		</div>
 		<div align="center" border="1">		
@@ -88,7 +89,7 @@
 					<table class="sizer" border='0'>
 						<tr>
 							<td class="td-label">
-								<label for="activities">Activities Points:</label>
+								<label for="activities">Atividades:</label>
 							</td>
 							<td class="td-data">
 								<input id="activities" type="text" value="{{input_ctrl.activitiesFileName}}" >
@@ -97,7 +98,7 @@
 						</tr>
 						<tr id="2">
 							<td class="td-label">
-								<label for="safety-distance">Safety Distance:</label>
+								<label for="safety-distance">Distância (m):</label>
 							</td>
 							</td>
 							<td class="td-data">
@@ -105,6 +106,7 @@
 							</td>
 						</tr>
 					</table>
+					<br>
 					<table class="sizer" border="0">
 						<tr align="center">
 							<td class="fields1">
@@ -117,7 +119,7 @@
 						<tr align="center">
 							<td class="fields1">
 								<ul id="available" class="connectedSortable">
-									<li class="ui-state-default" ng-repeat="field in input_ctrl.availableFields">{{field}}</li>
+									<li class="ui-state-active" ng-repeat="field in input_ctrl.availableFields">{{field}}</li>
 								</ul>
 							</td>
 							<td class="fields2">									
@@ -126,8 +128,8 @@
 								</ul>
 							</td>
 						</tr>
-					</table>
-				</fieldset label="Arquivos de Saída">
+					</table>					
+				</fieldset>
 				<fieldset>
 					<legend>Arquivos de Saída</legend>
 					<table id="sz-out" class="sizer">
@@ -137,7 +139,7 @@
 							</td>
 							<td class="td-data">
 								<input id="dm-output" type="text" value="{{input_ctrl.dmDependencies}}">
-								<input id="activities" type="button" value="..." >
+								<input id="activities" type="button" value="..." onclick="datamine.browseFile('dm-output','none')">
 							</td>
 						</tr>
 						<tr>
@@ -146,13 +148,15 @@
 							</td>
 							<td class="td-data">
 								<input id="exf-output" type="text" value="{{input_ctrl.exfDependencies}}">
-								<input id="activities" type="button" value="..." >
+								<input id="activities" type="button" value="..." onclick="datamine.browseFileExcel('exf-output','exf')">
 							</td>
 						</tr>
 					</table>					
 				</fieldset>
 			</form>
 		</div>
+		<!-- <div id="dependencias-horizontais">			
+		</div> -->
 		<div id="versao">	
 			v. 0.0 (alpha)
 		</div>				

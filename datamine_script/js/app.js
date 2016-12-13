@@ -33,7 +33,9 @@
             fields = datamine.getListFieldsFromFile(this.activitiesFileName);
             fields.sort()
             this.setAvailableFields(fields);
+            // $("ul>ul").class("ui-state-default")
         }
+
     });
     
     
