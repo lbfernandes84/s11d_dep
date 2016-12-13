@@ -1,8 +1,18 @@
 (function(){    
 
     var app = angular.module("s11d-dep",[]);
+    var default_ = ["SEGMENT", "METHOD", "SET", "BENCH", "PHASE", "LEVEL", "SEQF"]
 
     app.controller("inputDataController",function(){
+        //config fields
+        this.segment = "SEGMENT";
+        this.method = "METHOD";
+        this.setor = "SET";
+        this.bench = "BENCH";
+        this.phase = "PHASE";
+        this.level = "LEVEL";
+        this.seqf = "SEQF";
+
         //Input data
         this.activitiesFileName = "";
         this.safetyDistance = 100;

@@ -11,16 +11,26 @@
 			.ui-tooltip {
 				width: 420px;
 			}
-		 	/*#sortable1{
-			    border: 1px solid #eee;
-                width: 142px;
-                min-height: 20px;
-                list-style-type: none;
-                margin: 0;
-                padding: 5px 0 0 0;
-                float: left;
-                margin-right: 10px;
-            }*/
+		 	#available, #sort {
+			    border: 1px solid black;
+			    width: 142px;
+			    min-height: 20px;
+			    max-height: 200px;
+			    overflow:scroll;
+			    overflow-x: hidden;
+			    list-style-type: none;
+			    margin: 0;
+			    padding: 5px 0 0 0;
+			    float: left;
+			    margin-right: 10px;
+  			}
+			#available li, #sort li {
+				margin: 0 5px 5px 5px;
+				padding: 5px;
+				font-size: 0.9em;
+				text-align: center;
+				width: 85%;
+			}
         </style>
         <!-- JQUERY Library utils -->
         <script type="text/javascript" src='jquery/jquery-1.11.3.min.js'></script>
@@ -37,11 +47,10 @@
         <script type="text/javascript">
             //carregamento scripts
             $().ready(function (){
-				$("#available").sortable()
-				$("#sort").droppable()
 				$( "#available, #sort" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
+      				connectWith: ".connectedSortable"
+      				// receive:function(){alert(angulars11d-dep)}
+    			}).disableSelection();
                 defineVizualization()
             })
 
@@ -57,6 +66,8 @@
 
 				$("#available").width("85%")
 				$("#sort").width("85%")
+			
+				$("legend").css("font-size",20)
 			}
 
 		</script>
@@ -67,11 +78,14 @@
 			<!-- <img src="img/aa_logo.jpg" height="100" width="400"> -->
 			<!-- <img src="img/aa_logo.jpg"> -->
 		</div>
+		<div align="center" border="1">		
+			<h3>Gerar Depêndencias Longo Prazo</h3>
+		</div>
 		<div id="main" ng-controller="inputDataController as input_ctrl">		
 			<form action="">
 				<fieldset>
 					<legend>Arquivos de Entrada</legend>
-					<table class="sizer" border='1'>
+					<table class="sizer" border='0'>
 						<tr>
 							<td class="td-label">
 								<label for="activities">Activities Points:</label>
@@ -91,16 +105,24 @@
 							</td>
 						</tr>
 					</table>
-					<table class="sizer" border="1">
-						<tr>
+					<table class="sizer" border="0">
+						<tr align="center">
+							<td class="fields1">
+								Campos Disponíveis
+							</td>
+							<td class="fields1">
+								Ordem de Dependência
+							</td>
+						</tr>
+						<tr align="center">
 							<td class="fields1">
 								<ul id="available" class="connectedSortable">
-									<li ng-repeat="field in input_ctrl.availableFields">{{field}}</li>
+									<li class="ui-state-default" ng-repeat="field in input_ctrl.availableFields">{{field}}</li>
 								</ul>
 							</td>
 							<td class="fields2">									
-								<ul id="sort" class="connectedSortable" ng-mouseleave="alert('teste')">
-									<li>Teste</li>
+								<ul id="sort" class="connectedSortable" ng-mouseenter="alert('teste')">
+									<!-- <li class="ui-state-highlight">Teste</li> -->
 								</ul>
 							</td>
 						</tr>
@@ -130,7 +152,6 @@
 					</table>					
 				</fieldset>
 			</form>
-
 		</div>
 		<div id="versao">	
 			v. 0.0 (alpha)
